@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.fit.cvut.tjvsem;
+package cz.fit.cvut.comcrud;
 
 /**
  *
- * @author marek
+ * @author Marek Lukáš <lukasma5@fit.cvut.cz>
  */
 public class Main {
-	public static void main(String[] args) {
-		
-	}
+    public static void main(String[] args) {
+        
+    }
 }
