@@ -5,8 +5,17 @@
  */
 package cz.fit.cvut.comcrud;
 
+import cz.fit.cvut.comcrud.entity.Komiks;
+import cz.fit.cvut.comcrud.entity.Zanr;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,19 +38,35 @@ public class TestServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ComCrudPU");
+            EntityManager em = emf.createEntityManager();
+
+            TypedQuery<Komiks> q = em.createQuery("SELECT k FROM Komiks k", Komiks.class);
+            List<Komiks> results = q.getResultList();
+            
+            TypedQuery<Komiks> cK = em.createQuery("INSERT INTO Komiks (nazev, url, feed, popis, ikona, nsfw, id_zanr) VALUES (:nazev, :url, :feed, :popis, :ikona, :nsfw, :id_zanr)", Komiks.class);
+            cK.setParameter("nazev", "Hovno Komiks");
+            cK.setParameter("url", "https://url.com");
+            cK.setParameter("feed", "https://feed.com");
+            cK.setParameter("popis", "Nějaký popis");
+            cK.setParameter("ikona", "sadasda/asdasd.png");
+            cK.setParameter("nsfw", 1);
+            cK.setParameter("id_zanr", 1);
+            cK.executeUpdate();
+            
+            emf.close();
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TestServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TestServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
+            out.println("   <body>");
+            for (Komiks k : results) {
+                out.println("       <br>" + k.getNazev());
+            }
+            out.println("   </body>");
             out.println("</html>");
         }
     }
