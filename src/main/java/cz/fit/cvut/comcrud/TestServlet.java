@@ -41,31 +41,12 @@ public class TestServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ComCrudPU");
-            EntityManager em = emf.createEntityManager();
-
-            TypedQuery<Komiks> q = em.createQuery("SELECT k FROM Komiks k", Komiks.class);
-            List<Komiks> results = q.getResultList();
-            
-            TypedQuery<Komiks> cK = em.createQuery("INSERT INTO Komiks (nazev, url, feed, popis, ikona, nsfw, id_zanr) VALUES (:nazev, :url, :feed, :popis, :ikona, :nsfw, :id_zanr)", Komiks.class);
-            cK.setParameter("nazev", "Hovno Komiks");
-            cK.setParameter("url", "https://url.com");
-            cK.setParameter("feed", "https://feed.com");
-            cK.setParameter("popis", "Nějaký popis");
-            cK.setParameter("ikona", "sadasda/asdasd.png");
-            cK.setParameter("nsfw", 1);
-            cK.setParameter("id_zanr", 1);
-            cK.executeUpdate();
-            
-            emf.close();
-            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("   <body>");
-            for (Komiks k : results) {
-                out.println("       <br>" + k.getNazev());
-            }
+            out.println("       TestServlet loaded");
             out.println("   </body>");
             out.println("</html>");
         }
