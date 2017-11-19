@@ -6,16 +6,10 @@
 package cz.fit.cvut.comcrud;
 
 import cz.fit.cvut.comcrud.entity.Komiks;
-import cz.fit.cvut.comcrud.entity.Zanr;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import java.util.Collection;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,25 +22,22 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "TestServlet", urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+	@EJB
+	DatabaseBean databaseBean;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+		Collection<Komiks> listOfComics = databaseBean.getListOfComics();
+		
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("   <body>");
-            out.println("       TestServlet loaded");
+			for (Komiks k : listOfComics) {
+				out.println("		<p>" + k.toString() + "</p>");
+			}
+			
             out.println("   </body>");
             out.println("</html>");
         }
