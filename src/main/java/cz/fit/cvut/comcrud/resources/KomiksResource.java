@@ -15,9 +15,9 @@ import javax.ws.rs.Path;
  */
 @Path("/comics")
 public class KomiksResource {
-    @GET
-    @Produces("text/plain")
-    public String getAllComics() {
-        return "nope";
-    }
+	@GET
+	@Produces("text/plain")
+	public String getAllComics() {
+		return "nope";
+	}
 }

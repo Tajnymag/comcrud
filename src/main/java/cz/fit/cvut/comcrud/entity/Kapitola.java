@@ -32,128 +32,128 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "KAPITOLA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Kapitola.findAll", query = "SELECT k FROM Kapitola k")
-    , @NamedQuery(name = "Kapitola.findByIdKapitola", query = "SELECT k FROM Kapitola k WHERE k.idKapitola = :idKapitola")
-    , @NamedQuery(name = "Kapitola.findByNazev", query = "SELECT k FROM Kapitola k WHERE k.nazev = :nazev")
-    , @NamedQuery(name = "Kapitola.findByUrl", query = "SELECT k FROM Kapitola k WHERE k.url = :url")
-    , @NamedQuery(name = "Kapitola.findByDatumPridani", query = "SELECT k FROM Kapitola k WHERE k.datumPridani = :datumPridani")
-    , @NamedQuery(name = "Kapitola.findByPopis", query = "SELECT k FROM Kapitola k WHERE k.popis = :popis")})
+	@NamedQuery(name = "Kapitola.findAll", query = "SELECT k FROM Kapitola k")
+	, @NamedQuery(name = "Kapitola.findByIdKapitola", query = "SELECT k FROM Kapitola k WHERE k.idKapitola = :idKapitola")
+	, @NamedQuery(name = "Kapitola.findByNazev", query = "SELECT k FROM Kapitola k WHERE k.nazev = :nazev")
+	, @NamedQuery(name = "Kapitola.findByUrl", query = "SELECT k FROM Kapitola k WHERE k.url = :url")
+	, @NamedQuery(name = "Kapitola.findByDatumPridani", query = "SELECT k FROM Kapitola k WHERE k.datumPridani = :datumPridani")
+	, @NamedQuery(name = "Kapitola.findByPopis", query = "SELECT k FROM Kapitola k WHERE k.popis = :popis")})
 public class Kapitola implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_KAPITOLA")
-    private BigDecimal idKapitola;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "NAZEV")
-    private String nazev;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "URL")
-    private String url;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "DATUM_PRIDANI")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date datumPridani;
-    @Size(max = 512)
-    @Column(name = "POPIS")
-    private String popis;
-    @OneToMany(mappedBy = "idKapitola")
-    private Collection<Prispevek> prispevekCollection;
+	private static final long serialVersionUID = 1L;
+	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+	@Id
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "ID_KAPITOLA")
+	private BigDecimal idKapitola;
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 512)
+	@Column(name = "NAZEV")
+	private String nazev;
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 512)
+	@Column(name = "URL")
+	private String url;
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "DATUM_PRIDANI")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datumPridani;
+	@Size(max = 512)
+	@Column(name = "POPIS")
+	private String popis;
+	@OneToMany(mappedBy = "idKapitola")
+	private Collection<Prispevek> prispevekCollection;
 
-    public Kapitola() {
-    }
+	public Kapitola() {
+	}
 
-    public Kapitola(BigDecimal idKapitola) {
-        this.idKapitola = idKapitola;
-    }
+	public Kapitola(BigDecimal idKapitola) {
+		this.idKapitola = idKapitola;
+	}
 
-    public Kapitola(BigDecimal idKapitola, String nazev, String url, Date datumPridani) {
-        this.idKapitola = idKapitola;
-        this.nazev = nazev;
-        this.url = url;
-        this.datumPridani = datumPridani;
-    }
+	public Kapitola(BigDecimal idKapitola, String nazev, String url, Date datumPridani) {
+		this.idKapitola = idKapitola;
+		this.nazev = nazev;
+		this.url = url;
+		this.datumPridani = datumPridani;
+	}
 
-    public BigDecimal getIdKapitola() {
-        return idKapitola;
-    }
+	public BigDecimal getIdKapitola() {
+		return idKapitola;
+	}
 
-    public void setIdKapitola(BigDecimal idKapitola) {
-        this.idKapitola = idKapitola;
-    }
+	public void setIdKapitola(BigDecimal idKapitola) {
+		this.idKapitola = idKapitola;
+	}
 
-    public String getNazev() {
-        return nazev;
-    }
+	public String getNazev() {
+		return nazev;
+	}
 
-    public void setNazev(String nazev) {
-        this.nazev = nazev;
-    }
+	public void setNazev(String nazev) {
+		this.nazev = nazev;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public Date getDatumPridani() {
-        return datumPridani;
-    }
+	public Date getDatumPridani() {
+		return datumPridani;
+	}
 
-    public void setDatumPridani(Date datumPridani) {
-        this.datumPridani = datumPridani;
-    }
+	public void setDatumPridani(Date datumPridani) {
+		this.datumPridani = datumPridani;
+	}
 
-    public String getPopis() {
-        return popis;
-    }
+	public String getPopis() {
+		return popis;
+	}
 
-    public void setPopis(String popis) {
-        this.popis = popis;
-    }
+	public void setPopis(String popis) {
+		this.popis = popis;
+	}
 
-    @XmlTransient
-    public Collection<Prispevek> getPrispevekCollection() {
-        return prispevekCollection;
-    }
+	@XmlTransient
+	public Collection<Prispevek> getPrispevekCollection() {
+		return prispevekCollection;
+	}
 
-    public void setPrispevekCollection(Collection<Prispevek> prispevekCollection) {
-        this.prispevekCollection = prispevekCollection;
-    }
+	public void setPrispevekCollection(Collection<Prispevek> prispevekCollection) {
+		this.prispevekCollection = prispevekCollection;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idKapitola != null ? idKapitola.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (idKapitola != null ? idKapitola.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Kapitola)) {
-            return false;
-        }
-        Kapitola other = (Kapitola) object;
-        if ((this.idKapitola == null && other.idKapitola != null) || (this.idKapitola != null && !this.idKapitola.equals(other.idKapitola))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Kapitola)) {
+			return false;
+		}
+		Kapitola other = (Kapitola) object;
+		if ((this.idKapitola == null && other.idKapitola != null) || (this.idKapitola != null && !this.idKapitola.equals(other.idKapitola))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "cz.fit.cvut.comcrud.Kapitola[ idKapitola=" + idKapitola + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "cz.fit.cvut.comcrud.Kapitola[ idKapitola=" + idKapitola + " ]";
+	}
+	
 }

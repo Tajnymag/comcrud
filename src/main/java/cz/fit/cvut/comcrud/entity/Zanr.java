@@ -30,98 +30,98 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ZANR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Zanr.findAll", query = "SELECT z FROM Zanr z")
-    , @NamedQuery(name = "Zanr.findByIdZanr", query = "SELECT z FROM Zanr z WHERE z.idZanr = :idZanr")
-    , @NamedQuery(name = "Zanr.findByNazev", query = "SELECT z FROM Zanr z WHERE z.nazev = :nazev")
-    , @NamedQuery(name = "Zanr.findByPopis", query = "SELECT z FROM Zanr z WHERE z.popis = :popis")})
+	@NamedQuery(name = "Zanr.findAll", query = "SELECT z FROM Zanr z")
+	, @NamedQuery(name = "Zanr.findByIdZanr", query = "SELECT z FROM Zanr z WHERE z.idZanr = :idZanr")
+	, @NamedQuery(name = "Zanr.findByNazev", query = "SELECT z FROM Zanr z WHERE z.nazev = :nazev")
+	, @NamedQuery(name = "Zanr.findByPopis", query = "SELECT z FROM Zanr z WHERE z.popis = :popis")})
 public class Zanr implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_ZANR")
-    private BigDecimal idZanr;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "NAZEV")
-    private String nazev;
-    @Size(max = 512)
-    @Column(name = "POPIS")
-    private String popis;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idZanr")
-    private Collection<Komiks> komiksCollection;
+	private static final long serialVersionUID = 1L;
+	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+	@Id
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "ID_ZANR")
+	private BigDecimal idZanr;
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 128)
+	@Column(name = "NAZEV")
+	private String nazev;
+	@Size(max = 512)
+	@Column(name = "POPIS")
+	private String popis;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idZanr")
+	private Collection<Komiks> komiksCollection;
 
-    public Zanr() {
-    }
+	public Zanr() {
+	}
 
-    public Zanr(BigDecimal idZanr) {
-        this.idZanr = idZanr;
-    }
+	public Zanr(BigDecimal idZanr) {
+		this.idZanr = idZanr;
+	}
 
-    public Zanr(BigDecimal idZanr, String nazev) {
-        this.idZanr = idZanr;
-        this.nazev = nazev;
-    }
+	public Zanr(BigDecimal idZanr, String nazev) {
+		this.idZanr = idZanr;
+		this.nazev = nazev;
+	}
 
-    public BigDecimal getIdZanr() {
-        return idZanr;
-    }
+	public BigDecimal getIdZanr() {
+		return idZanr;
+	}
 
-    public void setIdZanr(BigDecimal idZanr) {
-        this.idZanr = idZanr;
-    }
+	public void setIdZanr(BigDecimal idZanr) {
+		this.idZanr = idZanr;
+	}
 
-    public String getNazev() {
-        return nazev;
-    }
+	public String getNazev() {
+		return nazev;
+	}
 
-    public void setNazev(String nazev) {
-        this.nazev = nazev;
-    }
+	public void setNazev(String nazev) {
+		this.nazev = nazev;
+	}
 
-    public String getPopis() {
-        return popis;
-    }
+	public String getPopis() {
+		return popis;
+	}
 
-    public void setPopis(String popis) {
-        this.popis = popis;
-    }
+	public void setPopis(String popis) {
+		this.popis = popis;
+	}
 
-    @XmlTransient
-    public Collection<Komiks> getKomiksCollection() {
-        return komiksCollection;
-    }
+	@XmlTransient
+	public Collection<Komiks> getKomiksCollection() {
+		return komiksCollection;
+	}
 
-    public void setKomiksCollection(Collection<Komiks> komiksCollection) {
-        this.komiksCollection = komiksCollection;
-    }
+	public void setKomiksCollection(Collection<Komiks> komiksCollection) {
+		this.komiksCollection = komiksCollection;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idZanr != null ? idZanr.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (idZanr != null ? idZanr.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Zanr)) {
-            return false;
-        }
-        Zanr other = (Zanr) object;
-        if ((this.idZanr == null && other.idZanr != null) || (this.idZanr != null && !this.idZanr.equals(other.idZanr))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Zanr)) {
+			return false;
+		}
+		Zanr other = (Zanr) object;
+		if ((this.idZanr == null && other.idZanr != null) || (this.idZanr != null && !this.idZanr.equals(other.idZanr))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "cz.fit.cvut.comcrud.Zanr[ idZanr=" + idZanr + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "cz.fit.cvut.comcrud.Zanr[ idZanr=" + idZanr + " ]";
+	}
+	
 }

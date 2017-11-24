@@ -19,17 +19,23 @@ import javax.persistence.Query;
 @Stateful
 public class DatabaseBean {
 
-    @PersistenceContext(unitName= "ComCrudPU")
-    EntityManager em;
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
-    public DatabaseBean() {
-    }
-    
-    public Collection<Komiks> getListOfComics() {
-        Query query = em.createQuery("SELECT k FROM Komiks k");
-        return (Collection<Komiks>) query.getResultList();
-    }
+	@PersistenceContext(unitName= "ComCrudPU")
+	EntityManager em;
+	
+	// Add business logic below. (Right-click in editor and choose
+	// "Insert Code > Add Business Method")
+	
+	public DatabaseBean() {
+	}
+	
+	public Collection<Komiks> getListOfComics() {
+		Query query = em.createQuery("SELECT k FROM Komiks k");
+		return (Collection<Komiks>) query.getResultList();
+	}
+	
+	public void insertComic(Komiks new_comic) {
+		em.getTransaction().begin();
+		em.persist(new_comic);
+		em.getTransaction().commit();
+	}
 }

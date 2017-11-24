@@ -10,7 +10,7 @@ package cz.fit.cvut.comcrud;
  * @author Marek Lukáš <lukasma5@fit.cvut.cz>
  */
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Main was run");
-    }
+	public static void main(String[] args) {
+		System.out.println("Main was run");
+	}
 }
