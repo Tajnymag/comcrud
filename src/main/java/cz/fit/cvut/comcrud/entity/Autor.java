@@ -39,8 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Autor.findByInfo", query = "SELECT a FROM Autor a WHERE a.info = :info")})
 public class Autor implements Serializable {
 
-	@ManyToMany(mappedBy = "autorCollection")
-	private Collection<Komiks> komiksCollection;
+	
 	@JoinColumn(name = "ID_NARODNOST", referencedColumnName = "ID_NARODNOST")
 	@ManyToOne(optional = false)
 	private Narodnost idNarodnost;
@@ -145,15 +144,6 @@ public class Autor implements Serializable {
 	@Override
 	public String toString() {
 		return "cz.fit.cvut.comcrud.Autor[ idAutor=" + idAutor + " ]";
-	}
-
-	@XmlTransient
-	public Collection<Komiks> getKomiksCollection() {
-		return komiksCollection;
-	}
-
-	public void setKomiksCollection(Collection<Komiks> komiksCollection) {
-		this.komiksCollection = komiksCollection;
 	}
 
 	public Narodnost getIdNarodnost() {

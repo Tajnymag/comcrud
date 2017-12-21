@@ -6,6 +6,7 @@
 package cz.fit.cvut.comcrud.entity.service;
 
 import cz.fit.cvut.comcrud.entity.Narodnost;
+import cz.fit.cvut.comcrud.entity.NarodnostList;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author Marek Lukáš <lukasma5@fit.cvut.cz>
  */
 @Stateless
-@Path("cz.fit.cvut.comcrud.entity.narodnost")
+@Path("narodnost")
 public class NarodnostFacadeREST extends AbstractFacade<Narodnost> {
 
 	@PersistenceContext(unitName = "ComCrudPU")
@@ -64,18 +65,13 @@ public class NarodnostFacadeREST extends AbstractFacade<Narodnost> {
 	}
 
 	@GET
-    @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public List<Narodnost> findAll() {
-		return super.findAll();
+	public NarodnostList findAllNarosdnosts() {
+		NarodnostList l = new NarodnostList();
+		l.setNarodnosts(super.findAll());
+		return l;
 	}
 
-	@GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public List<Narodnost> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-		return super.findRange(new int[]{from, to});
-	}
 
 	@GET
     @Path("count")

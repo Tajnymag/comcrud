@@ -51,8 +51,6 @@ public class Zanr implements Serializable {
 	@Size(max = 512)
 	@Column(name = "POPIS")
 	private String popis;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idZanr")
-	private Collection<Komiks> komiksCollection;
 
 	public Zanr() {
 	}
@@ -88,15 +86,6 @@ public class Zanr implements Serializable {
 
 	public void setPopis(String popis) {
 		this.popis = popis;
-	}
-
-	@XmlTransient
-	public Collection<Komiks> getKomiksCollection() {
-		return komiksCollection;
-	}
-
-	public void setKomiksCollection(Collection<Komiks> komiksCollection) {
-		this.komiksCollection = komiksCollection;
 	}
 
 	@Override

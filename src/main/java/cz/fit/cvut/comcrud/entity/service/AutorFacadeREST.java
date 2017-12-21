@@ -6,6 +6,7 @@
 package cz.fit.cvut.comcrud.entity.service;
 
 import cz.fit.cvut.comcrud.entity.Autor;
+import cz.fit.cvut.comcrud.entity.AutorList;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author Marek Lukáš <lukasma5@fit.cvut.cz>
  */
 @Stateless
-@Path("cz.fit.cvut.comcrud.entity.autor")
+@Path("autor")
 public class AutorFacadeREST extends AbstractFacade<Autor> {
 
 	@PersistenceContext(unitName = "ComCrudPU")
@@ -64,18 +65,13 @@ public class AutorFacadeREST extends AbstractFacade<Autor> {
 	}
 
 	@GET
-    @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public List<Autor> findAll() {
-		return super.findAll();
+	public AutorList findAllAutors() {
+		AutorList l = new AutorList();
+		l.setAutors(super.findAll());
+		return l;
 	}
 
-	@GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public List<Autor> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-		return super.findRange(new int[]{from, to});
-	}
 
 	@GET
     @Path("count")

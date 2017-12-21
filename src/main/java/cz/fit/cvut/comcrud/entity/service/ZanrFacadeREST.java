@@ -6,6 +6,7 @@
 package cz.fit.cvut.comcrud.entity.service;
 
 import cz.fit.cvut.comcrud.entity.Zanr;
+import cz.fit.cvut.comcrud.entity.ZanrList;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author Marek Lukáš <lukasma5@fit.cvut.cz>
  */
 @Stateless
-@Path("cz.fit.cvut.comcrud.entity.zanr")
+@Path("zanr")
 public class ZanrFacadeREST extends AbstractFacade<Zanr> {
 
 	@PersistenceContext(unitName = "ComCrudPU")
@@ -64,17 +65,11 @@ public class ZanrFacadeREST extends AbstractFacade<Zanr> {
 	}
 
 	@GET
-    @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public List<Zanr> findAll() {
-		return super.findAll();
-	}
-
-	@GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public List<Zanr> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-		return super.findRange(new int[]{from, to});
+	public ZanrList findAllZanrs() {
+		ZanrList l = new ZanrList();
+		l.setZanrs(super.findAll());
+		return l;
 	}
 
 	@GET

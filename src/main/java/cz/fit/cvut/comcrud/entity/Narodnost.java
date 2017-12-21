@@ -47,10 +47,6 @@ public class Narodnost implements Serializable {
 	@Size(min = 1, max = 512)
 	@Column(name = "NAZEV")
 	private String nazev;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idNarodnost")
-	private Collection<Autor> autorCollection;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idNarodnost")
-	private Collection<Uzivatel> uzivatelCollection;
 
 	public Narodnost() {
 	}
@@ -80,23 +76,7 @@ public class Narodnost implements Serializable {
 		this.nazev = nazev;
 	}
 
-	@XmlTransient
-	public Collection<Autor> getAutorCollection() {
-		return autorCollection;
-	}
 
-	public void setAutorCollection(Collection<Autor> autorCollection) {
-		this.autorCollection = autorCollection;
-	}
-
-	@XmlTransient
-	public Collection<Uzivatel> getUzivatelCollection() {
-		return uzivatelCollection;
-	}
-
-	public void setUzivatelCollection(Collection<Uzivatel> uzivatelCollection) {
-		this.uzivatelCollection = uzivatelCollection;
-	}
 
 	@Override
 	public int hashCode() {

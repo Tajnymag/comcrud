@@ -25,13 +25,7 @@ public class ApplicationConfig extends Application {
 	 */
 	private void addRestResourceClasses(Set<Class<?>> resources) {
 		resources.add(cz.fit.cvut.comcrud.entity.service.AutorFacadeREST.class);
-		resources.add(cz.fit.cvut.comcrud.entity.service.HistorieFacadeREST.class);
-		resources.add(cz.fit.cvut.comcrud.entity.service.KapitolaFacadeREST.class);
-		resources.add(cz.fit.cvut.comcrud.entity.service.KomiksFacadeREST.class);
 		resources.add(cz.fit.cvut.comcrud.entity.service.NarodnostFacadeREST.class);
-		resources.add(cz.fit.cvut.comcrud.entity.service.PrispevekFacadeREST.class);
-		resources.add(cz.fit.cvut.comcrud.entity.service.SlozkaFacadeREST.class);
-		resources.add(cz.fit.cvut.comcrud.entity.service.UzivatelFacadeREST.class);
 		resources.add(cz.fit.cvut.comcrud.entity.service.ZanrFacadeREST.class);
 	}
 
